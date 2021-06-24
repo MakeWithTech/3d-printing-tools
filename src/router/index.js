@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import HomeView from "../views/HomeView.vue";
+import AboutView from "../views/AboutView.vue";
+import ExtruderCalcView from "../views/ExtruderCalcView.vue";
+import GcodeTerminalView from "../views/GcodeTerminalView.vue";
 
 Vue.use(VueRouter);
 
@@ -8,16 +11,22 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomeView,
   },
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: AboutView,
+  },
+  {
+    path: "/extrudercalc",
+    name: "ExtruderCalc",
+    component: ExtruderCalcView,
+  },
+  {
+    path: "/gcodeterminal",
+    name: "GcodeTerminal",
+    component: GcodeTerminalView,
   },
 ];
 
