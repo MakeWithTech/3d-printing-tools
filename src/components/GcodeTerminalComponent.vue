@@ -1,8 +1,20 @@
 <template>
   <v-container>
+    <!-- To Do: Baud Rate Fields, Input Field, Filters, Hints Pop-Up or sidebar with tabs -->
+    <!-- To Do: cache printer output until you see a CR then add line -->
     <p>Gcode Terminal</p>
-    <p v-if="hasSerial === true">**** HAS SERIAL *****</p>
-    <v-btn @click="connect"> connect </v-btn>
+    <p v-if="hasSerial === true">**** YOUR BROWSER HAS SERIAL SUPPORT *****</p>
+    <div>
+      <v-btn @click="connect" class="mx-6"> connect </v-btn>
+      <v-btn @click="disconnect" class="mx-6"> disconnect </v-btn>
+    </div>
+    <v-data-table
+      :headers="logHeader"
+      :items="log"
+      :items-per-page="1000"
+      :height="600"
+    >
+    </v-data-table>
   </v-container>
 </template>
 
@@ -19,6 +31,9 @@ export default {
       outputStream: null,
       outputDone: null,
       reader: null,
+      running: true,
+      log: [{ logLine: "First line" }],
+      logHeader: [{ text: "Log of 3d Printing Output", value: "logLine" }],
     };
   },
   created() {
@@ -37,12 +52,6 @@ export default {
     },
     async connect() {
       console.log("in connect");
-      //const inputField = document.getElementById("input");
-      //inputField.disabled = false;
-      //inputField.focus();
-      //inputField.select();
-      //document.getElementById("sendButton").disabled = false;
-      //document.getElementById("connect").disabled = true;
       this.port = await navigator.serial.requestPort();
       // - Wait for the port to open.
       await this.port.open({ baudRate: 115200 });
@@ -56,7 +65,40 @@ export default {
       this.outputDone = encoder.readable.pipeTo(this.port.writable);
       this.outputStream = encoder.writable;
       this.reader = this.inputStream.getReader();
-      // readLoop()
+      this.readLoop();
+    },
+    async disconnect() {
+      console.log("in disconnect");
+      this.running = false;
+    },
+    async readLoop() {
+      console.log("Readloop");
+
+      while (this.running) {
+        const { value, done } = await this.reader.read();
+        console.log("value", value);
+        console.log("done", done);
+        if (value) {
+          this.log.push({ logLine: value });
+        }
+        if (done) {
+          console.log("[readLoop] DONE", done);
+          break;
+        }
+      }
+      // Clean up by canceling the read and closing the port
+      // This needs work and debugging
+      console.log("Releasing lock");
+      this.reader.releaseLock();
+      console.lot("Close the port");
+      this.port.close();
+      console.log("Port Closed");
+    },
+    writeToStream(line) {
+      const writer = this.outputStream.getWriter();
+      console.log("[SEND]", line);
+      writer.write(line + "\r");
+      writer.releaseLock();
     },
   },
 };
