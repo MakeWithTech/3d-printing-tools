@@ -3,18 +3,50 @@
     <!-- To Do: Baud Rate Fields, Input Field, Filters, Hints Pop-Up or sidebar with tabs -->
     <!-- To Do: cache printer output until you see a CR then add line -->
     <p>Gcode Terminal</p>
-    <p v-if="hasSerial === true">**** YOUR BROWSER HAS SERIAL SUPPORT *****</p>
+    <p v-if="hasSerial === true">
+      **** YOUR BROWSER HAS WEB SERIAL SUPPORT *****
+    </p>
+    <p v-if="tooSmall === true">
+      **** This application requires a minimum window size of 600px to work
+      properly *****
+    </p>
     <div>
       <v-btn @click="connect" class="mx-6"> connect </v-btn>
       <v-btn @click="disconnect" class="mx-6"> disconnect </v-btn>
+      <v-btn @click="clearLog" class="mx-6"> clear log</v-btn>
     </div>
-    <v-data-table
-      :headers="logHeader"
-      :items="log"
-      :items-per-page="1000"
-      :height="600"
-    >
-    </v-data-table>
+    <v-form v-on:submit.prevent="checkSend">
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-on:keyup="checkSend"
+            label="Enter gcode to send here"
+            v-model="sendText"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-form>
+
+    <v-row>
+      <v-col col="12" sm="8">
+        <v-data-table
+          :headers="logHeader"
+          :items="log"
+          :items-per-page="5"
+          :height="400"
+          :item-key="lineNumber"
+          :footer-props="{
+            showFirstLastPage: true,
+          }"
+        >
+        </v-data-table>
+      </v-col>
+      <v-col col="12" sm="4">
+        <v-card class="pa-2" outlined tile>
+          <p>Help text will go here ...</p>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -24,6 +56,7 @@ export default {
   data() {
     return {
       hasSerial: false,
+      tooSmall: true,
       port: null,
       inputField: null,
       inputStream: null,
@@ -32,24 +65,25 @@ export default {
       outputDone: null,
       reader: null,
       running: true,
-      log: [{ logLine: "First line" }],
-      logHeader: [{ text: "Log of 3d Printing Output", value: "logLine" }],
+      partialLog: "",
+      lineNumber: "0",
+      log: [{ lineNumber: null, logLine: null }],
+      logHeader: [
+        { text: "Line", value: "lineNumber" },
+        { text: "Log of 3d Printing Output", value: "logLine" },
+      ],
+      sendText: null,
     };
   },
   created() {
     if ("serial" in navigator) {
       this.hasSerial = true;
     }
+    if (window.innerWidth > 599) {
+      this.tooSmall = false;
+    }
   },
   methods: {
-    checkSerialAgain() {
-      if ("serial" in navigator) {
-        this.hasSerial = true;
-      }
-    },
-    test() {
-      console.log("test");
-    },
     async connect() {
       console.log("in connect");
       this.port = await navigator.serial.requestPort();
@@ -76,29 +110,54 @@ export default {
 
       while (this.running) {
         const { value, done } = await this.reader.read();
-        console.log("value", value);
-        console.log("done", done);
         if (value) {
-          this.log.push({ logLine: value });
+          this.partialLog = this.partialLog + value;
+          let endChar = this.partialLog.charAt(this.partialLog.length - 1);
+          //console.log("end char " + endChar.charCodeAt(0));
+          if (endChar.charCodeAt(0) === 10) {
+            // Replace Echo with <CR>+Echo
+            const regex = /echo/gmi;
+            const subst = `\rEcho`;
+            const formattedString = this.partialLog.replace(regex, subst);
+            // Now add the string to the array
+            this.lineNumber = parseInt(this.lineNumber) + 1;
+            this.log.push({
+              lineNumber: this.lineNumber,
+              logLine: formattedString,
+            });
+            this.partialLog = "";
+          }
         }
         if (done) {
           console.log("[readLoop] DONE", done);
           break;
         }
       }
-      // Clean up by canceling the read and closing the port
-      // This needs work and debugging
       console.log("Releasing lock");
-      this.reader.releaseLock();
-      console.lot("Close the port");
+      await this.reader.releaseLock();
+      console.log("Close the port");
       this.port.close();
       console.log("Port Closed");
     },
-    writeToStream(line) {
+    checkSend(e) {
+      if (e.keyCode === 13) {
+        console.log("Enter was pressed");
+        console.log(this.sendText);
+        this.writeToStream();
+        this.sendText = null;
+      }
+    },
+    clearLog() {
+      this.log = [];
+    },
+    writeToStream() {
       const writer = this.outputStream.getWriter();
-      console.log("[SEND]", line);
-      writer.write(line + "\r");
+      console.log("[SEND]", this.sendText);
+      writer.write(this.sendText + "\r");
       writer.releaseLock();
+    },
+    gotoSelectedRow() {
+      this.$nextTick(() => this.$vuetify.goTo("lastRow"));
     },
   },
 };
