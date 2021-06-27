@@ -32,12 +32,9 @@
         <v-data-table
           :headers="logHeader"
           :items="log"
-          :items-per-page="5"
-          :height="400"
           :item-key="lineNumber"
-          :footer-props="{
-            showFirstLastPage: true,
-          }"
+          :dense="true"
+          :items-per-page="-1"
         >
         </v-data-table>
       </v-col>
@@ -107,25 +104,38 @@ export default {
     },
     async readLoop() {
       console.log("Readloop");
+      console.log(this.lineNumber);
+      console.log(this.log);
+
+      // Read replies from from the 3d printer
+      // Keep reading until we see a <CR>
+      // Finally split the proceeded string into separate lines
+      // on <LF>
 
       while (this.running) {
         const { value, done } = await this.reader.read();
         if (value) {
+          console.log("raw: ", value);
           this.partialLog = this.partialLog + value;
           let endChar = this.partialLog.charAt(this.partialLog.length - 1);
-          //console.log("end char " + endChar.charCodeAt(0));
-          if (endChar.charCodeAt(0) === 10) {
-            // Replace Echo with <CR>+Echo
-            const regex = /echo/gmi;
-            const subst = `\rEcho`;
-            const formattedString = this.partialLog.replace(regex, subst);
-            // Now add the string to the array
-            this.lineNumber = parseInt(this.lineNumber) + 1;
-            this.log.push({
-              lineNumber: this.lineNumber,
-              logLine: formattedString,
+          // Continue reading until we see a <LF> ascii 10 or <CR> ascii 13
+          if (endChar.charCodeAt(0) === 13 || endChar.charCodeAt(0) === 10) {
+            let formattedArray = this.partialLog.split("\n");
+            // Need to use arrow format to allow access to this variables
+            formattedArray.forEach((formattedString) => {
+              if (formattedString.length > 0) {
+                // Now add the string to the array
+                this.lineNumber = (parseInt(this.lineNumber) + 1).toString();
+                this.log.push({
+                  lineNumber: this.lineNumber,
+                  logLine: formattedString,
+                });
+              }
             });
             this.partialLog = "";
+            // Force scroll to bottom
+            // $vuetify.goTo(target, options)
+            //     this.$vuetify.goTo(0)
           }
         }
         if (done) {
