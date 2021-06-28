@@ -5,6 +5,9 @@
     <p>Gcode Terminal</p>
     <p v-if="hasSerial === true">
       **** YOUR BROWSER HAS WEB SERIAL SUPPORT *****
+      <br />
+      **** Window Size
+      {{ windowSize.y }} : {{ windowSize.y }} *****
     </p>
     <p v-if="tooSmall === true">
       **** This application requires a minimum window size of 600px to work
@@ -15,17 +18,17 @@
       <v-btn @click="disconnect" class="mx-6"> disconnect </v-btn>
       <v-btn @click="clearLog" class="mx-6"> clear log</v-btn>
     </div>
-    <v-form v-on:submit.prevent="checkSend">
-      <v-row>
-        <v-col>
+    <v-row>
+      <v-col>
+        <v-form v-on:submit.prevent="checkSend">
           <v-text-field
             v-on:keyup="checkSend"
             label="Enter gcode to send here"
             v-model="sendText"
           ></v-text-field>
-        </v-col>
-      </v-row>
-    </v-form>
+        </v-form>
+      </v-col>
+    </v-row>
 
     <v-row>
       <v-col col="12" sm="8">
@@ -34,13 +37,24 @@
           :items="log"
           :item-key="lineNumber"
           :dense="true"
-          :items-per-page="-1"
+          :items-per-page="20"
+          :height="windowSize.y - 1000"
         >
         </v-data-table>
       </v-col>
       <v-col col="12" sm="4">
         <v-card class="pa-2" outlined tile>
-          <p>Help text will go here ...</p>
+          <p>
+            Mark off 120 mm of filament from the Extruder entry
+            <br />
+            Extrude 100mm of Filament using the following command:
+            <br />
+            M83 ; relative mode
+            <br />
+            G92 E0 ; reset the extruder to zero
+            <br />
+            G1 E100 F100; extrude 100mm at 100 mm per minute
+          </p>
         </v-card>
       </v-col>
     </v-row>
@@ -70,6 +84,10 @@ export default {
         { text: "Log of 3d Printing Output", value: "logLine" },
       ],
       sendText: null,
+      windowSize: {
+        x: 0,
+        y: 0,
+      },
     };
   },
   created() {
