@@ -10,13 +10,38 @@
         />
       </v-col>
 
-      <v-col class="mb-4">
+      <v-col>
         <h1 class="display-2 font-weight-bold mb-3">
           Let's Learn Something Together
         </h1>
 
+        <p class="subtitle-2">
+          This web application is provided at no cost and with no warrenty.<br />
+          Please use it at your own risk and assume all responsibility for any
+          <br />
+          damage to your equiptment.
+        </p>
+
+        <v-card flat class="pa-8">
+          <p>
+            The initial two utilities provided in this application assist with
+            calibrating FDM 3d printers that use Gcocde. A common problem faced
+            by uses of 3d printers is finding appropriate software that supports
+            interacting over a USB connections with a 3d printer. The "GCODE USB
+            TERMINAL" provides users of 3d printers with an easy to access
+            solutions since it runs from both Google Chrome and Microsoft Edge.
+          </p>
+          <p>
+            These applications are designed for full size screen son tablets,
+            laptops, chromebooks and desktop computers. While they may work on a
+            smart phone I have made no attempt to ensure they work correctly
+            from smaller devices.
+          </p></v-card
+        >
+
         <p class="subheading font-weight-regular">
-          To collaboration with DrVax community members,
+          To collaboration with DrVax community members,<br />
+          and discuss your 3d printing experiences,
           <br />please join our online
           <a href="https://forum.drvax.com" target="_blank">Discussion Forum</a>
         </p>

@@ -44,17 +44,20 @@
       </v-col>
       <v-col col="12" sm="4">
         <v-card class="pa-2" outlined tile>
-          <p>
-            Mark off 120 mm of filament from the Extruder entry
-            <br />
-            Extrude 100mm of Filament using the following command:
-            <br />
-            M83 ; relative mode
-            <br />
-            G92 E0 ; reset the extruder to zero
-            <br />
-            G1 E100 F100; extrude 100mm at 100 mm per minute
+          <p class="font-weight-bold">
+            Common Gcode Commands used in Printer Calibration
           </p>
+          <ul>
+            <li>M503 ; Display Saved Parameters</li>
+            <li>M83 ; Set extruder to relative mode</li>
+            <li>G92 E0 ; Set extuder to 0</li>
+            <li>
+              G1 E100 F100 ; Push 100mm of filament through the extruder at
+              100mm per minute
+            </li>
+            <li>M92 X80.00 Y80.00 Z400.00 E95.00 ; Update steps per unit</li>
+            <li>M500 ; Save Updated Parameters to EPROM</li>
+          </ul>
         </v-card>
       </v-col>
     </v-row>

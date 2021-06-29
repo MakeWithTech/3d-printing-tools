@@ -1,12 +1,16 @@
 <template>
   <v-app>
     <v-navigation-drawer app>
-      <v-btn text>
-        <router-link to="/gcodeterminal">GCode USB Terminal</router-link>
-      </v-btn>
-      <v-btn text>
-        <router-link to="/extrudercalc">Extruder Calculator</router-link>
-      </v-btn>
+      <v-row class="mt-15">
+        <v-col>
+          <v-btn text>
+            <router-link to="/gcodeterminal">GCode USB Terminal</router-link>
+          </v-btn>
+          <v-btn text>
+            <router-link to="/extrudercalc">Extruder Calculator</router-link>
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -22,6 +26,9 @@
         </v-btn>
         <v-btn text>
           <a href="https://drvax.com">DrVax Blog</a>
+        </v-btn>
+        <v-btn text>
+          <a href="https://youtube.com/c/drvax">YouTube Channel</a>
         </v-btn>
         <v-btn text>
           <router-link to="/about">About</router-link>
