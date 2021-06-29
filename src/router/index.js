@@ -4,6 +4,8 @@ import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import ExtruderCalcView from "../views/ExtruderCalcView.vue";
 import GcodeTerminalView from "../views/GcodeTerminalView.vue";
+import PIDCalibration from "../views/PIDCalibrationView.vue";
+import CalibrationChecklist from "../views/CalibrationChecklistView.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,16 @@ const routes = [
     path: "/gcodeterminal",
     name: "GcodeTerminal",
     component: GcodeTerminalView,
+  },
+  {
+    path: "/pidcalibration",
+    name: "PIDCalibration",
+    component: PIDCalibration,
+  },
+  {
+    path: "/calibrationchecklist",
+    name: "CalibrationChecklist",
+    component: CalibrationChecklist,
   },
 ];
 

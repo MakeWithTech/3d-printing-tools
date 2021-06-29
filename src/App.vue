@@ -4,10 +4,24 @@
       <v-row class="mt-15">
         <v-col>
           <v-btn text>
-            <router-link to="/gcodeterminal">GCode USB Terminal</router-link>
+            <v-icon left> mdi-calculator</v-icon>
+            <router-link to="/calibrationchecklist">
+              &nbsp;Checklist</router-link
+            >
           </v-btn>
           <v-btn text>
-            <router-link to="/extrudercalc">Extruder Calculator</router-link>
+            <v-icon left> mdi-console</v-icon>
+            <router-link to="/gcodeterminal"> &nbsp;Terminal</router-link>
+          </v-btn>
+          <v-btn text>
+            <v-icon left> mdi-rotate-right</v-icon>
+            <router-link to="/extrudercalc"> &nbsp;Extruder Steps</router-link>
+          </v-btn>
+          <v-btn text>
+            <v-icon left> mdi-temperature-celsius</v-icon>
+            <router-link to="/pidcalibration">
+              &nbsp;PID (Temperature)</router-link
+            >
           </v-btn>
         </v-col>
       </v-row>
