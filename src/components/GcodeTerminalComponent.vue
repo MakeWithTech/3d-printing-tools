@@ -2,23 +2,44 @@
   <v-container>
     <!-- To Do: Baud Rate Fields, Input Field, Filters, Hints Pop-Up or sidebar with tabs -->
     <!-- To Do: cache printer output until you see a CR then add line -->
-    <p>Gcode Terminal</p>
-    <p v-if="hasSerial === true">
-      **** YOUR BROWSER HAS WEB SERIAL SUPPORT *****
-      <br />
-      **** Window Size
-      {{ windowSize.y }} : {{ windowSize.y }} *****
+    <p class="font-weight-medium">Gcode Terminal</p>
+    <p v-if="hasSerial === false">
+      **** Your browser does not support the web serial framework required for
+      this application *****
     </p>
     <p v-if="tooSmall === true">
       **** This application requires a minimum window size of 600px to work
       properly *****
     </p>
-    <div>
-      <v-btn @click="connect" class="mx-6"> connect </v-btn>
-      <v-btn @click="disconnect" class="mx-6"> disconnect </v-btn>
-      <v-btn @click="clearLog" class="mx-6"> clear log</v-btn>
-    </div>
     <v-row>
+      <v-col col="12" sm="3">
+        <v-select
+          class="mx-0"
+          outlined
+          :items="baudRate"
+          label="Baud Rate"
+          v-model="selectedBaudRate"
+        ></v-select>
+      </v-col>
+      <v-col col="12" sm="3">
+        <v-btn @click="connect" class="my-3"> connect </v-btn>
+      </v-col>
+      <v-col col="12" sm="3">
+        <v-btn @click="disconnect" class="my-3"> disconnect </v-btn>
+      </v-col>
+      <v-col col="12" sm="3">
+        <v-btn @click="clearLog" class="my-3"> clear log</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-checkbox
+        class="mt-5 mx-2"
+        v-model="upperCase"
+        label="Upper Case Commands"
+      >
+      </v-checkbox>
+    </v-row>
+    <v-row class="mt-5">
       <v-col>
         <v-form v-on:submit.prevent="checkSend">
           <v-text-field
@@ -30,15 +51,15 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row class="mt-5">
       <v-col col="12" sm="8">
         <v-data-table
           :headers="logHeader"
           :items="log"
           :item-key="lineNumber"
           :dense="true"
-          :items-per-page="20"
-          :height="windowSize.y - 1000"
+          :items-per-page="10"
+          :page="-1"
         >
         </v-data-table>
       </v-col>
@@ -47,17 +68,20 @@
           <p class="font-weight-bold">
             Common Gcode Commands used in Printer Calibration
           </p>
-          <ul>
-            <li>M503 ; Display Saved Parameters</li>
-            <li>M83 ; Set extruder to relative mode</li>
-            <li>G92 E0 ; Set extuder to 0</li>
-            <li>
+          <v-list>
+            <v-list-item> M115 ; Display Firmware Version </v-list-item>
+            <v-list-item> M503 ; Display Saved Parameters </v-list-item>
+            <v-list-item> M83 ; Set extruder to relative mode </v-list-item>
+            <v-list-item> G92 E0 ; Set extuder to 0 </v-list-item>
+            <v-list-item>
               G1 E100 F100 ; Push 100mm of filament through the extruder at
               100mm per minute
-            </li>
-            <li>M92 X80.00 Y80.00 Z400.00 E95.00 ; Update steps per unit</li>
-            <li>M500 ; Save Updated Parameters to EPROM</li>
-          </ul>
+            </v-list-item>
+            <v-list-item>
+              M92 X80.00 Y80.00 Z400.00 E95.00 ; Update
+            </v-list-item>
+            <v-list-item> M500 ; Save Updated Parameters to EPROM </v-list-item>
+          </v-list>
         </v-card>
       </v-col>
     </v-row>
@@ -91,6 +115,9 @@ export default {
         x: 0,
         y: 0,
       },
+      upperCase: false,
+      baudRate: [115200, 57600, 9600],
+      selectedBaudRate: 115200,
     };
   },
   created() {
@@ -100,13 +127,15 @@ export default {
     if (window.innerWidth > 599) {
       this.tooSmall = false;
     }
+    this.windowSize.x = window.innerWidth;
+    this.windowSize.y = window.innerHeight;
   },
   methods: {
     async connect() {
       console.log("in connect");
       this.port = await navigator.serial.requestPort();
       // - Wait for the port to open.
-      await this.port.open({ baudRate: 115200 });
+      await this.port.open({ baudRate: this.selectedBaudRate });
       console.log("Open");
       // eslint-disable-next-line no-undef
       let decoder = new TextDecoderStream();
@@ -183,8 +212,16 @@ export default {
     },
     writeToStream() {
       const writer = this.outputStream.getWriter();
-      console.log("[SEND]", this.sendText);
-      writer.write(this.sendText + "\r");
+      let textToSend = this.sendText;
+      if (this.upperCase) {
+        textToSend = textToSend.toUpperCase();
+      }
+      console.log("[SENT]", textToSend);
+      this.log.push({
+        lineNumber: this.lineNumber,
+        logLine: "[SENT] " + textToSend,
+      });
+      writer.write(textToSend + "\r");
       writer.releaseLock();
     },
     gotoSelectedRow() {

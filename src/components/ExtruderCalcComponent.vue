@@ -18,34 +18,69 @@
             filament through the extruder. Measure the actual length feed and
             then adjust the firmware E steps parameter to calibrate correctly.
           </p>
+          <p class="font-italic font-weight-medium">
+            The formuals used is New Steps per mm = (reported steps per mm) x
+            [100 / (measured distance filament traveled).
+          </p>
+          <p>
+            It is important to note that your ARE NOT measuring the filament
+            that comes out of the nozzle, you are measuring the length of
+            filament pulled through the extruder.
+          </p>
         </v-card>
       </v-col>
     </v-row>
     <v-row>
       <v-col col="12" sm="4" class="pa-4">
         <v-form v-on:submit.prevent>
-          <label>1. Original M92 E value: </label
-          ><v-text-field v-model="originalEValue"></v-text-field> <br /><br />
-          <label>2. Measured extruded filement: </label
-          ><v-text-field v-model="measuredDistance"></v-text-field> <br /><br />
-          <label>New M92 E value: </label>
-          {{ newEValue > 0 ? newEValue : "[Fill in fields 1 & 2]" }}
+          <v-text-field
+            v-model="originalEValue"
+            label="Original M92 E Value"
+            outlined
+            clearable
+            class="shrink"
+            style="width: 300px"
+          ></v-text-field>
+          <br />
+          <v-text-field
+            label="Measure the Filament Remaining"
+            outlined
+            clearable
+            class="shrink"
+            style="width: 300px"
+            v-model="measuredDistance"
+          >
+          </v-text-field>
+          <br />
+          <v-text-field
+            label="New E Value"
+            outlined
+            readonly
+            style="width: 300px"
+            background-color="yellow lighten-5"
+            v-model="newEValue"
+          >
+          </v-text-field>
         </v-form>
       </v-col>
+
       <v-col col="12" sm="4" class="pa-4">
-        <br />
         <v-card class="pa-2" outlined tile>
           Enter the value echoed from the M503 command for the E parameter.
         </v-card>
-        <br /><br />
+        <br />
+        <br />
         <v-card class="pa-2" outlined tile>
-          Measure the distance from your extruder to your mark and enter here.
+          After extruding 100mm. Measure the distance to your 120mm mark and
+          enter here.
         </v-card>
-        <br /><br />
-        <v-card class="pa-2" outlined tile> New Calculated E Value. </v-card>
+        <br />
+        <br />
+        <v-card class="pa-2" outlined tile>
+          Display only. New Calculated E Value.
+        </v-card>
       </v-col>
       <v-col col="12" sm="4" class="pa-4">
-        <br />
         <v-card class="pa-2" outlined tile>
           <ol class="font-weight-medium my-2">
             <li class="my-2">
@@ -57,9 +92,12 @@
               Use the G1 E100 F100 command to extrude 100 millimeters of
               filament.
             </li>
-            <li class="my-2">Measure the filament left before the extruder.</li>
             <li class="my-2">
-              Your etruder multiplier is off by 120 minus this measurement.
+              Measure the filament left after extruding 100mm of filament.
+            </li>
+            <li class="my-2">
+              If this number is great than 20 you are unextruding, if less than
+              20 your are over.extruding. If 20 your steps are set perfectly.
             </li>
             <li class="my-2">
               Calculate the new extruder multiplier by using the percentage
@@ -85,8 +123,8 @@ export default {
   name: "ExtruderCalcComponent",
   data() {
     return {
-      originalEValue: 0,
-      measuredDistance: 0,
+      originalEValue: "",
+      measuredDistance: "",
     };
   },
   created() {},

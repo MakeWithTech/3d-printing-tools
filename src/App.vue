@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
+    <v-navigation-drawer v-model="drawer" app>
       <v-row class="mt-15">
         <v-col>
           <v-btn text>
@@ -14,7 +14,7 @@
     </v-navigation-drawer>
 
     <v-app-bar app>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <!-- Non breaking spaces added to title to solve a truncation bug -->
       <v-app-bar-title shrink-on-scroll
         >DrVax 3d Printing Utilities &nbsp;
@@ -56,7 +56,7 @@ export default {
   name: "App",
 
   data: () => ({
-    //
+    drawer: null,
   }),
 };
 </script>

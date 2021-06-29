@@ -9,7 +9,7 @@
           height="200"
         />
 
-        <p class="font-weight-bold mb-3">version pre-alpha 1</p>
+        <p class="font-weight-bold mb-3">version pre-alpha 1.1</p>
 
         <h1 class="display-2 font-weight-bold mb-3">
           Let's Learn Something Together
