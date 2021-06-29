@@ -8,9 +8,9 @@
           contain
           height="200"
         />
-      </v-col>
 
-      <v-col>
+        <p class="font-weight-bold mb-3">version pre-alpha 1</p>
+
         <h1 class="display-2 font-weight-bold mb-3">
           Let's Learn Something Together
         </h1>
@@ -32,12 +32,11 @@
             solutions since it runs from both Google Chrome and Microsoft Edge.
           </p>
           <p>
-            These applications are designed for full size screen son tablets,
-            laptops, chromebooks and desktop computers. While they may work on a
-            smart phone I have made no attempt to ensure they work correctly
-            from smaller devices.
-          </p></v-card
-        >
+            These applications are designed for laptops, chromebooks and desktop
+            computers. While they may work on a tablet that has USB
+            capabilitiees I have not tested on tablets.
+          </p>
+        </v-card>
 
         <p class="subheading font-weight-regular">
           To collaboration with DrVax community members,<br />
