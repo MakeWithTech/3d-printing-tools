@@ -68,7 +68,7 @@
           <p class="font-weight-bold">
             Common Gcode Commands used in Printer Calibration
           </p>
-          <v-list>
+          <v-list class="text-body-2">
             <v-list-item> M115 ; Display Firmware Version </v-list-item>
             <v-list-item> M503 ; Display Saved Parameters </v-list-item>
             <v-list-item> M83 ; Set extruder to relative mode </v-list-item>
