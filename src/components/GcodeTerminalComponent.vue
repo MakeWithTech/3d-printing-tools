@@ -9,7 +9,7 @@
       <v-col>
         <!-- To Do: Baud Rate Fields, Input Field, Filters, Hints Pop-Up or sidebar with tabs -->
         <!-- To Do: cache printer output until you see a CR then add line -->
-        <p class="font-weight-medium">Gcode Terminal</p>
+        <p class="font-weight-medium">Select rate and connect to get started</p>
         <p v-if="hasSerial === false" class="red">
           **** Your browser does not support the web serial framework required
           for this application *****
@@ -20,6 +20,9 @@
         </p>
         <p v-if="connectFailed === true" class="red">
           **** Connect Failed. Refresh browser and try again. *****
+        </p>
+        <p v-if="writeFailed === true" class="red">
+          **** Write failed. You must connect first. *****
         </p>
       </v-col>
     </v-row>
@@ -71,8 +74,7 @@
           <v-text-field
             v-on:keyup="checkSend"
             label="Enter gcode to send followed by return"
-            v-model="sendText"
-          >
+            v-model="sendText">
           </v-text-field>
         </v-form>
       </v-col>
@@ -132,6 +134,7 @@ export default {
       hasSerial: false,
       tooSmall: true,
       connectFailed: false,
+      writeFailed: false,
       port: null,
       inputField: null,
       inputStream: null,
@@ -184,6 +187,8 @@ export default {
           logLine: "[OPEN FAILED] Refresh the page to close the port and retry",
         });
       }
+      // writeFailed is set if we try to write before connecting
+      this.writeFailed = false;
       console.log("Open");
       // eslint-disable-next-line no-undef
       let decoder = new TextDecoderStream();
@@ -300,7 +305,12 @@ export default {
       this.log = [];
     },
     writeToStream() {
-      const writer = this.outputStream.getWriter();
+      let writer;
+      try {
+        writer = this.outputStream.getWriter();
+      } catch (error) {
+        this.writeFailed = true;
+      }
       let textToSend = this.sendText;
       if (this.upperCase) {
         textToSend = textToSend.toUpperCase();

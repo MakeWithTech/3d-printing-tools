@@ -36,10 +36,10 @@
         <p>
           The initial two utilities provided in this application assist with
           calibrating FDM 3d printers that use Gcocde. A common problem faced by
-          uses of 3d printers is finding appropriate software that supports
+          users of 3d printers is finding appropriate software that supports
           interacting over a USB connections with a 3d printer. The "GCODE USB
           TERMINAL" provides users of 3d printers with an easy to access
-          solutions since it runs from both Google Chrome and Microsoft Edge.
+          solution since it runs from both Google Chrome and Microsoft Edge.
         </p>
         <p>
           These applications are designed for laptops, chromebooks and desktop

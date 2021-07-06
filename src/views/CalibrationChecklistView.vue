@@ -58,6 +58,7 @@
         <v-card class="pa-2 mb-3">
           <p><b>Every 50 Prints </b></p>
           <ul>
+            <li>All "Every 20 Print" checks, plus ...</li>
             <li>Relevel the Print Bed Verify and Calibrate the Extruder</li>
             <li>Print a Calibration Cube</li>
             <li>Run a PID Calibration</li>
