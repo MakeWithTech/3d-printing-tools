@@ -74,7 +74,8 @@
           <v-text-field
             v-on:keyup="checkSend"
             label="Enter gcode to send followed by return"
-            v-model="sendText">
+            v-model="sendText"
+          >
           </v-text-field>
         </v-form>
       </v-col>

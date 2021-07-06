@@ -14,12 +14,12 @@
           elements.
         </p>
         <p>
-          When your 3d printers attempts to heat the bed or nozzle to a specific
+          When your 3d printer attempts to heat the bed or nozzle to a specific
           temperature it cannot just turn on the heating element, wait to reach
           the specific temperature and then turn off the heating elements. The
           residual heat in the heating element will cause the temperaure of the
           selected component to overrun the target. Instead a sophisticated
-          algorithym, proporional-intergral-derivation, PID for short, is used.
+          algorithym, proportional-intergral-derivation, PID for short, is used.
         </p>
         <p>
           3d printers with current and complete firmware support the M301 and
@@ -38,8 +38,9 @@
               D[value]. Do not enter the square brackets.
             </li>
             <li class="ma-2">
-              Send a M304 E-1 S60 command to your printer to calibrate the bed
-              at a temperature of 60c
+              Send a M303 E-1 S60 command to your printer to calibrate the bed
+              at a temperature of 60c. This is the same command you use for the
+              extruder. The E value selects the extruder or the bed.
             </li>
 
             <li class="ma-2">

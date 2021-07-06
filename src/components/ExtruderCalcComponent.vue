@@ -24,7 +24,7 @@
             then adjust the firmware E steps parameter to calibrate correctly.
           </p>
           <p class="font-italic font-weight-medium">
-            The formuals used is New Steps per mm = (reported steps per mm) x
+            The formulas used is New Steps per mm = (reported steps per mm) x
             [100 / (measured distance filament traveled).
           </p>
           <p>
