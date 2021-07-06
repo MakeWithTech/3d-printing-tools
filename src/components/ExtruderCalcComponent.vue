@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-row class="text-center">
+      <v-col cols="12">
+        <p class="display-2 font-weight-bold">Extruder Steps Calibrations</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col class="pa-4">
         <v-card flat>
