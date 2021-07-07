@@ -1,4 +1,4 @@
-# 3d-printing-utilities -- Web Serial Javascript Vue Example
+# 3d-printing-utilities -- Web Serial Javascript Vue Amplify Example
 
 The 3d printing utilities are designed to assist users of
 consumer grade 3d printer in the calibration of their
@@ -7,7 +7,8 @@ devices.
 This is also an example of using the Web Serial API in
 Javascript with the VUE framework and VUETIFY. 
 
-The application is hosted at 3d-printing-tools.drvax.com.
+The application is hosted via AWS Amplify at
+3d-printing-tools.drvax.com.
 
 The initial two utilities provided in this application
 assist with calibrating FDM 3d printers that use G-Code. A
