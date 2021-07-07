@@ -10,18 +10,18 @@
         <!-- To Do: Baud Rate Fields, Input Field, Filters, Hints Pop-Up or sidebar with tabs -->
         <!-- To Do: cache printer output until you see a CR then add line -->
         <p class="font-weight-medium">Select rate and connect to get started</p>
-        <p v-if="hasSerial === false" class="red">
+        <p v-if="hasSerial === false" class="red--text">
           **** Your browser does not support the web serial framework required
           for this application *****
         </p>
-        <p v-if="tooSmall === true" class="red">
+        <p v-if="tooSmall === true" class="red--text">
           **** This application requires a minimum window size of 600px to work
           properly *****
         </p>
-        <p v-if="connectFailed === true" class="red">
-          **** Connect Failed. Refresh browser and try again. *****
+        <p v-if="connectFailed === true" class="red--text">
+          **** Connect Failed. Click disconnect and try again *****
         </p>
-        <p v-if="writeFailed === true" class="red">
+        <p v-if="writeFailed === true" class="red--text">
           **** Write failed. You must connect first. *****
         </p>
       </v-col>
@@ -39,11 +39,9 @@
       <v-col col="12">
         <v-btn @click="connect" class="my-3"> connect </v-btn>
       </v-col>
-      <!-- I was unable to get the disconnect to work properly 
       <v-col col="12">
         <v-btn @click="disconnect" class="my-3"> disconnect </v-btn>
       </v-col>
-      -->
       <v-spacer />
       <v-col col="12" sm="3">
         <v-text-field
@@ -160,6 +158,7 @@ export default {
       baudRate: [115200, 57600, 9600],
       selectedBaudRate: 115200,
       logFilter: null,
+      closed: null,
     };
   },
   created() {
@@ -180,7 +179,7 @@ export default {
       try {
         await this.port.open({ baudRate: this.selectedBaudRate });
       } catch (error) {
-        console.log("*** close port read error ***");
+        console.log("*** open port error ***");
         console.log(error);
         this.connectFailed = true;
         this.log.push({
@@ -200,47 +199,16 @@ export default {
       this.outputDone = encoder.readable.pipeTo(this.port.writable);
       this.outputStream = encoder.writable;
       this.reader = this.inputStream.getReader();
-      this.readLoop();
+      this.closed = this.readLoop();
     },
     async disconnect() {
-      // This code does not work and is not currently wired
-      // to a button.
-      console.log("in disconnect");
       this.running = false;
-      this.log.push({
-        lineNumber: "000000",
-        logLine: "[DISCONNECT CLICKED]",
-      });
-      console.log("Canceling read");
-      try {
-        await this.reader.cancel();
-      } catch (error) {
-        console.log("*** cancel read error ***");
-        console.log(error);
-      }
-      console.log("Releasing lock");
-      try {
-        this.reader.releaseLock();
-      } catch (error) {
-        console.log("*** release lock read error ***");
-        console.log(error);
-      }
-      console.log("Close the port");
-      try {
-        this.port.close();
-      } catch (error) {
-        console.log("*** close port read error ***");
-        console.log(error);
-        this.log.push({
-          lineNumber: "ERROR",
-          logLine: "[CLOSE FAILED] Refresh the page to close the port",
-        });
-      }
-      console.log(" ***** Port Closed *****");
-      this.log.push({
-        lineNumber: "CLOSE CLICKED",
-        logLine: "[Port Closed by User Disconnect] ",
-      });
+      // I have been unable to get a cancel and close port to work.
+      // Instead I am using a brute force solution and forcing a browser
+      // refresh.
+      // console.log("wait for readloop close");
+      // await this.closed;
+      location.reload();
     },
     async readLoop() {
       console.log("Readloop");
@@ -289,7 +257,13 @@ export default {
           }
         }
         if (done) {
-          console.log("[readLoop] DONE", done);
+          console.log("[readLoop] DONE EXECUTED", done);
+          console.log("release the reader lock");
+          await this.reader.releaseLock();
+          console.log("close output stream");
+          await this.outputStream.close();
+          console.log("close the port");
+          await this.port.close();
           break;
         }
       }
