@@ -19,8 +19,24 @@
           review this checklist and learn how to perform all of these
           maintenance steps.
         </p>
-        <p>Here is a list of common steps your should take:</p>
 
+        <v-card class="pa-2 mb-3">
+          <p><b>Tools Required</b></p>
+          <ul>
+            <li>HEX Drivers to tighten frame</li>
+            <li>Spanner (open end wrench) to adjust eccentric nuts</li>
+            <li>120mm or longer ruler to use for extruder step calibration</li>
+            <li>Optional - Digital Caliper to check print calibration</li>
+            <li>
+              Post it Note or sheet of standard 20lb laser paper for bed level
+              test
+            </li>
+            <li>Diagonal (side) cutter to cut filament for loading</li>
+            <li>Optional - Needle Nose pliers</li>
+            <li>Screw Drivers as needed</li>
+          </ul>
+        </v-card>
+        <p>Here is a list of common steps your should take:</p>
         <v-card class="pa-2 mb-3">
           <p><b>Before You First Print</b></p>
           <ul>
@@ -39,7 +55,6 @@
             <li>Print a Calibration Cube to Verify Print Quality</li>
           </ul>
         </v-card>
-
         <v-card class="pa-2 mb-3">
           <p><b>Every 5 Prints</b></p>
           <ul>
