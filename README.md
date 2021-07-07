@@ -4,11 +4,14 @@ The 3d printing utilities are designed to assist users of
 consumer grade 3d printers in the calibration of their
 devices.
 
+Please head over to the DrVax Discussion server at:
+https://forum.drvax.com to discuss this application.
+
 This is also an example of using the Web Serial API in
 Javascript with the VUE framework and VUETIFY. 
 
-The application is hosted via AWS Amplify at
-3d-printing-tools.drvax.com.
+The application is hosted via AWS Amplify at: 
+https://3d-printing-tools.drvax.com.
 
 The initial two utilities provided in this application
 assist with calibrating FDM 3d printers that use G-Code. A
