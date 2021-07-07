@@ -1,7 +1,7 @@
 # 3d-printing-utilities -- Web Serial Javascript Vue Amplify Example
 
 The 3d printing utilities are designed to assist users of
-consumer grade 3d printer in the calibration of their
+consumer grade 3d printers in the calibration of their
 devices.
 
 This is also an example of using the Web Serial API in
