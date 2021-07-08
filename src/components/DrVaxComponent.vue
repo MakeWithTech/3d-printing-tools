@@ -59,6 +59,19 @@
       </v-col>
       <v-spacer />
     </v-row>
+    <v-row class="text-center">
+      <v-spacer />
+      <v-col cols="8" justify-center>
+        <p style="font-size: x-small">Copyright 2021, Cogitations, LLC</p>
+        <p style="font-size: x-small">
+          License under the MIT License
+          <a href="https://opensource.org/licenses/MIT"
+            >MIT Open Source License</a
+          >
+        </p>
+      </v-col>
+      <v-spacer />
+    </v-row>
   </v-container>
 </template>
 
