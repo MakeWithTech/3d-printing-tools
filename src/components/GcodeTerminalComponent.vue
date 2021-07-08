@@ -94,17 +94,19 @@
       <v-col col="12" sm="4">
         <v-card class="pa-2" outlined tile>
           <p class="font-weight-bold">Common Gcode Commands</p>
-          <v-list dense class="text-caption">
+          <v-list class="text-caption font-weight-bold">
             <v-list-item> M115 ; Display Firmware Version </v-list-item>
             <v-list-item> M503 ; Display Saved Parameters </v-list-item>
             <v-list-item> M83 ; Set extruder to relative mode </v-list-item>
             <v-list-item> G92 E0 ; Set extuder to 0 </v-list-item>
+            <v-list-item>M104 S200 ; Set temperature to 200c </v-list-item>
+            <v-list-item>M105 ; Get a termperature report </v-list-item>
             <v-list-item>
               G1 E100 F100 ; Push 100mm of filament through the extruder at
               100mm per minute
             </v-list-item>
             <v-list-item>
-              M92 X80.00 Y80.00 Z400.00 E95.00 ; Update
+              M92 X80.00 Y80.00 Z400.00 E95.00 ; Update E-Steps
             </v-list-item>
             <v-list-item>
               M303 E0 S220 ; Start PID Extruder Autotune
@@ -124,6 +126,12 @@
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+.v-list-item {
+  min-height: 30px;
+}
+</style>
 
 <script>
 export default {
