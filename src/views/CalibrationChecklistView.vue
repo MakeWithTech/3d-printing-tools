@@ -34,6 +34,7 @@
             <li>Diagonal (side) cutter to cut filament for loading</li>
             <li>Optional - Needle Nose pliers</li>
             <li>Screw Drivers as needed</li>
+            <li>Super Lube or Equivalent Silicone Grease</li>
           </ul>
         </v-card>
         <p>Here is a list of common steps your should take:</p>
@@ -77,6 +78,7 @@
             <li>Relevel the Print Bed Verify and Calibrate the Extruder</li>
             <li>Print a Calibration Cube</li>
             <li>Run a PID Calibration</li>
+            <li>Libricate Z-Axis Screw</li>
           </ul>
         </v-card>
       </v-col>
