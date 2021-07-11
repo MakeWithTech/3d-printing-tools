@@ -163,7 +163,7 @@ export default {
         y: 0,
       },
       upperCase: false,
-      baudRate: [250000, 230400, 115200, 57600, 9600],
+      baudRate: [256000, 250000, 230400, 128000, 115200, 57600, 9600],
       selectedBaudRate: 115200,
       logFilter: null,
       closed: null,
