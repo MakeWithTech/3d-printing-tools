@@ -163,7 +163,7 @@ export default {
         y: 0,
       },
       upperCase: false,
-      baudRate: [115200, 57600, 9600],
+      baudRate: [250000, 230400, 115200, 57600, 9600],
       selectedBaudRate: 115200,
       logFilter: null,
       closed: null,
@@ -182,6 +182,7 @@ export default {
   methods: {
     async connect() {
       console.log("in connect");
+      console.log("baud rate: ", this.selectedBaudRate);
       this.port = await navigator.serial.requestPort();
       // - Wait for the port to open.
       try {

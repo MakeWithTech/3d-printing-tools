@@ -31,7 +31,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <!-- Non breaking spaces added to title to solve a truncation bug -->
       <v-app-bar-title shrink-on-scroll
-        >DrVax 3d Printing Utilities &nbsp;
+        >DrVax 3d Printing Tools &nbsp;
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <span class="hidden-sm-and-down">
