@@ -67,6 +67,12 @@
         label="Upper Case Commands"
       >
       </v-checkbox>
+      <v-checkbox
+        class="mt-1 mx-2"
+        v-model="reverseLog"
+        label="Reverse Log Direction (add to top)"
+      >
+      </v-checkbox>
     </v-row>
     <v-row class="mt-1">
       <v-col>
@@ -168,6 +174,7 @@ export default {
         y: 0,
       },
       upperCase: false,
+      reverseLog: false,
       baudRate: [256000, 250000, 230400, 128000, 115200, 57600, 9600],
       selectedBaudRate: 115200,
       logFilter: null,
@@ -255,14 +262,6 @@ export default {
             // Check for RegEXP Filter
             const regex = new RegExp(this.logFilter);
             const found = regex.test(this.partialLog);
-            console.log(
-              "found:",
-              this.logFilter,
-              " regex: ",
-              regex,
-              " match: ",
-              found
-            );
             // Log the output if it does not match the filter
             if (this.logFilter == null || found == false) {
               let formattedArray = this.partialLog.split("\n");
@@ -271,10 +270,7 @@ export default {
                 if (formattedString.length > 0) {
                   // Now add the string to the array
                   this.lineNumber = (parseInt(this.lineNumber) + 1).toString();
-                  this.log.push({
-                    lineNumber: this.lineNumber,
-                    logLine: formattedString,
-                  });
+                  this.addToLog(formattedString);
                 }
               });
             }
@@ -304,6 +300,19 @@ export default {
     clearLog() {
       this.log = [];
     },
+    addToLog(lineToAdd) {
+      if (!this.reverseLog) {
+        this.log.push({
+          lineNumber: this.lineNumber,
+          logLine: lineToAdd,
+        });
+      } else {
+        this.log.unshift({
+          lineNumber: this.lineNumber,
+          logLine: lineToAdd,
+        });
+      }
+    },
     writeToStream() {
       let writer;
       try {
@@ -315,11 +324,10 @@ export default {
       if (this.upperCase) {
         textToSend = textToSend.toUpperCase();
       }
-      console.log("[SENT]", textToSend);
-      this.log.push({
-        lineNumber: this.lineNumber,
-        logLine: "[SENT] " + textToSend,
-      });
+      console.log("[SENT]", textToSend, " line number: ", this.lineNumber);
+      this.lineNumber = (parseInt(this.lineNumber) + 1).toString();
+      console.log("SEND new line number: ", this.lineNumber);
+      this.addToLog("[SENT] " + textToSend);
       writer.write(textToSend + "\r");
       writer.releaseLock();
     },
