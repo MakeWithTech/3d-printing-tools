@@ -37,7 +37,9 @@
         ></v-select>
       </v-col>
       <v-col col="12">
-        <v-btn @click="connect" class="my-3"> connect </v-btn>
+        <v-btn @click="connect" class="my-3" :color="connectColor">
+          {{ connectText }}
+        </v-btn>
       </v-col>
       <v-col col="12">
         <v-btn @click="disconnect" class="my-3"> disconnect </v-btn>
@@ -140,7 +142,10 @@ export default {
     return {
       hasSerial: false,
       tooSmall: true,
+      connected: false,
       connectFailed: false,
+      connectColor: "primary",
+      connectText: "connect",
       writeFailed: false,
       port: null,
       inputField: null,
@@ -181,6 +186,9 @@ export default {
   },
   methods: {
     async connect() {
+      this.connected = false;
+      this.connectText = "connect";
+      this.connectColor = "primary";
       console.log("in connect");
       console.log("baud rate: ", this.selectedBaudRate);
       this.port = await navigator.serial.requestPort();
@@ -191,24 +199,32 @@ export default {
         console.log("*** open port error ***");
         console.log(error);
         this.connectFailed = true;
+        this.connectColor = "error";
+        this.connectText = "error";
         this.log.push({
           lineNumber: "ERROR",
           logLine: "[OPEN FAILED] Refresh the page to close the port and retry",
         });
       }
-      // writeFailed is set if we try to write before connecting
-      this.writeFailed = false;
-      console.log("Open");
-      // eslint-disable-next-line no-undef
-      let decoder = new TextDecoderStream();
-      this.inputDone = this.port.readable.pipeTo(decoder.writable);
-      this.inputStream = decoder.readable;
-      // eslint-disable-next-line no-undef
-      const encoder = new TextEncoderStream();
-      this.outputDone = encoder.readable.pipeTo(this.port.writable);
-      this.outputStream = encoder.writable;
-      this.reader = this.inputStream.getReader();
-      this.closed = this.readLoop();
+      // Check for success and continue
+      if (!this.connectFailed) {
+        this.connected = true;
+        this.connectText = "connected";
+        this.connectColor = "secondary";
+        // writeFailed is set if we try to write before connecting
+        this.writeFailed = false;
+        console.log("Open");
+        // eslint-disable-next-line no-undef
+        let decoder = new TextDecoderStream();
+        this.inputDone = this.port.readable.pipeTo(decoder.writable);
+        this.inputStream = decoder.readable;
+        // eslint-disable-next-line no-undef
+        const encoder = new TextEncoderStream();
+        this.outputDone = encoder.readable.pipeTo(this.port.writable);
+        this.outputStream = encoder.writable;
+        this.reader = this.inputStream.getReader();
+        this.closed = this.readLoop();
+      }
     },
     async disconnect() {
       this.running = false;
