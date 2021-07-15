@@ -70,7 +70,8 @@
       <v-checkbox
         class="mt-1 mx-2"
         v-model="reverseLog"
-        label="Reverse Log Direction (add to top)"
+        @click="reverseLogClicked"
+        label="Reverse Log Direction (add to top, will clear log)"
       >
       </v-checkbox>
     </v-row>
@@ -296,6 +297,11 @@ export default {
         this.writeToStream();
         this.sendText = null;
       }
+    },
+    reverseLogClicked() {
+      // When the user changes the log direction clear the log to
+      // minimize confusion.
+      this.clearLog();
     },
     clearLog() {
       this.log = [];
