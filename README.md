@@ -8,10 +8,13 @@ Please head over to the DrVax Discussion server at:
 https://forum.drvax.com to discuss this application.
 
 This is also an example of using the Web Serial API in
-Javascript with the VUE framework and VUETIFY. 
+Javascript with the VUE framework and VUETIFY.
 
-The application is hosted via AWS Amplify at: 
+The application is hosted via AWS Amplify at:
 https://3d-printing-tools.drvax.com.
+
+** This code is not pretty and will need refactoring to make it 
+DRY and to better handle variable scope **.
 
 The initial two utilities provided in this application
 assist with calibrating FDM 3d printers that use G-Code. A
@@ -64,5 +67,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
