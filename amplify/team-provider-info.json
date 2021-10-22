@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-3dprintingutilities-dev-104940-authRole",
+      "UnauthRoleArn": "arn:aws:iam::771845507544:role/amplify-3dprintingutilities-dev-104940-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::771845507544:role/amplify-3dprintingutilities-dev-104940-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-3dprintingutilities-dev-104940-deployment",
+      "UnauthRoleName": "amplify-3dprintingutilities-dev-104940-unauthRole",
+      "StackName": "amplify-3dprintingutilities-dev-104940",
+      "StackId": "arn:aws:cloudformation:us-east-1:771845507544:stack/amplify-3dprintingutilities-dev-104940/cb3d6a30-d503-11eb-894c-0abfd97085ad",
+      "AmplifyAppId": "d1q3gkyfau3eb"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1q3gkyfau3eb",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

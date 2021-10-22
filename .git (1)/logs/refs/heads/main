@@ -1,0 +1,32 @@
+0000000000000000000000000000000000000000 c80110e58efa365dfd44e5cd70bc556de6d2a831 Irv Shapiro <ishapiro@cogitations.com> 1624586084 -0500	commit (initial): Initial Commit
+c80110e58efa365dfd44e5cd70bc556de6d2a831 41bcd9163299bc28ff9a4762ef3d623ab959de73 Irv Shapiro <ishapiro@cogitations.com> 1624586195 -0500	rebase (skip) (finish): refs/heads/master onto 41bcd9163299bc28ff9a4762ef3d623ab959de73
+41bcd9163299bc28ff9a4762ef3d623ab959de73 41bcd9163299bc28ff9a4762ef3d623ab959de73 Irv Shapiro <ishapiro@cogitations.com> 1624586508 -0500	Branch: renamed refs/heads/master to refs/heads/main
+41bcd9163299bc28ff9a4762ef3d623ab959de73 b2c374188729a4a08f1c46d9a645dca2f35b3801 Irv Shapiro <ishapiro@cogitations.com> 1624589760 -0500	commit: init
+b2c374188729a4a08f1c46d9a645dca2f35b3801 2ec46f1f48a8d47868987fbf11736da36c40b113 Irv Shapiro <ishapiro@cogitations.com> 1624635844 -0500	commit: Added array, basic log. Need to handle CR
+2ec46f1f48a8d47868987fbf11736da36c40b113 975fe91a554ae0211714b1b6856604a224e5ad50 Irv Shapiro <ishapiro@cogitations.com> 1624655216 -0500	commit: Send and Recieve. Need more formating and help.
+975fe91a554ae0211714b1b6856604a224e5ad50 5190e1fdce65efcf40faa040a2a89cfc6caed375 Irv Shapiro <ishapiro@cogitations.com> 1624809744 -0500	commit: Line formatted updated.
+5190e1fdce65efcf40faa040a2a89cfc6caed375 4a5eeb241cee2306923cbc107bb947dc49dc7dbd Irv Shapiro <ishapiro@cogitations.com> 1624915770 -0500	commit: First cut of extruder caluclator.
+4a5eeb241cee2306923cbc107bb947dc49dc7dbd 2844429a2601dec9b237f75e01a7b61ed2ae3b53 Irv Shapiro <ishapiro@cogitations.com> 1624929719 -0500	commit: Added initial help text and extruder calc
+2844429a2601dec9b237f75e01a7b61ed2ae3b53 9fdb333acd2bdd42d27ea22c86833c310bc2c752 Irv Shapiro <ishapiro@cogitations.com> 1624932553 -0500	commit: Added version number
+9fdb333acd2bdd42d27ea22c86833c310bc2c752 34f99355371c739ce2b0bc9c457443acd21ec422 Irv Shapiro <ishapiro@cogitations.com> 1624991029 -0500	commit: Drawer wired, formatting, baudrate, terminal, ANET
+34f99355371c739ce2b0bc9c457443acd21ec422 fcd311798962c05124e21b99a0a2ecd2588f44c0 Irv Shapiro <ishapiro@cogitations.com> 1624991863 -0500	commit: Updated version number to alpha 1.1. Formatting.
+fcd311798962c05124e21b99a0a2ecd2588f44c0 07d6b9833882abad1a43ee0cdcc4259d584509b6 Irv Shapiro <ishapiro@cogitations.com> 1624996746 -0500	commit: Added Pages and Icons
+07d6b9833882abad1a43ee0cdcc4259d584509b6 3ef2e2347b517b21cb5d2526d24a4c41ab781d61 Irv Shapiro <ishapiro@cogitations.com> 1625594152 -0500	commit: Ready for Alpha Release
+3ef2e2347b517b21cb5d2526d24a4c41ab781d61 6d0bc9daff54b1a4b2d017cba8b3144eb41d3e4b Irv Shapiro <ishapiro@cogitations.com> 1625595220 -0500	commit: Added error messages
+6d0bc9daff54b1a4b2d017cba8b3144eb41d3e4b 06d4bfdb4bd9d0ac99e9ce32a08c9abde052ebd5 Irv Shapiro <ishapiro@cogitations.com> 1625598083 -0500	commit: Fixe typos in text
+06d4bfdb4bd9d0ac99e9ce32a08c9abde052ebd5 e34b88c09cfa4b0810debda75cc16c417d7845f8 Irv Shapiro <ishapiro@cogitations.com> 1625669713 -0500	commit: Beta 1.0 Release
+e34b88c09cfa4b0810debda75cc16c417d7845f8 2a057e6bc9ffc4ad319f437f8289e52c73d73872 Irv Shapiro <ishapiro@cogitations.com> 1625670159 -0500	commit: Updated README
+2a057e6bc9ffc4ad319f437f8289e52c73d73872 a5c54c61ec72f1e6b065dcbf5e342ff4f0cf7775 Irv Shapiro <ishapiro@cogitations.com> 1625670437 -0500	commit: Added MIT License
+a5c54c61ec72f1e6b065dcbf5e342ff4f0cf7775 3484297b15c339302bcc4978037e9921d577105d Irv Shapiro <ishapiro@cogitations.com> 1625670536 -0500	commit: Added hosting location
+3484297b15c339302bcc4978037e9921d577105d 4caeb40077e85b9c8a269a7a6d50c9d0bf00606d Irv Shapiro <ishapiro@cogitations.com> 1625670632 -0500	commit: Fixed Typo
+4caeb40077e85b9c8a269a7a6d50c9d0bf00606d cb5c408804bb0ee7630a0e5e5f478d7eb1fc8ac7 Irv Shapiro <ishapiro@cogitations.com> 1625670932 -0500	commit: Added link to drvax forum.
+cb5c408804bb0ee7630a0e5e5f478d7eb1fc8ac7 a1ed28dd931e3b1045eecbc228bb03865ed0d09b Irv Shapiro <ishapiro@cogitations.com> 1625684142 -0500	commit: Made buttons more reliable. Added tool list.
+a1ed28dd931e3b1045eecbc228bb03865ed0d09b d09df87ab5fc90775660ca42a89786cc20a4a2f5 Irv Shapiro <ishapiro@cogitations.com> 1625753307 -0500	commit: Added z-axis instructions
+d09df87ab5fc90775660ca42a89786cc20a4a2f5 78ac702bf575d7bd5f7b0128abfac9d7dc00fab5 Irv Shapiro <ishapiro@cogitations.com> 1625755629 -0500	commit: Updated G-Code Help Spacing with CSS Override
+78ac702bf575d7bd5f7b0128abfac9d7dc00fab5 6bf92617a74274715d7872145cf3ef108f02609e Irv Shapiro <ishapiro@cogitations.com> 1625756150 -0500	commit: Updated License
+6bf92617a74274715d7872145cf3ef108f02609e f45d9f5e51d8bbe2c96d73377ad3dd6948804a91 Irv Shapiro <ishapiro@cogitations.com> 1625972044 -0500	commit: Added higher baud rates
+f45d9f5e51d8bbe2c96d73377ad3dd6948804a91 1b79c33a96e956e931411f448821a6425dde2b3b Irv Shapiro <ishapiro@cogitations.com> 1625973703 -0500	commit: More baud rates
+1b79c33a96e956e931411f448821a6425dde2b3b 6911112673318f0abf2177df317f074ce1bc3abb Irv Shapiro <ishapiro@cogitations.com> 1626311127 -0500	commit: Added additional connect error handling
+6911112673318f0abf2177df317f074ce1bc3abb 7541489ad6df53140809ae3160044edfca6fca71 Irv Shapiro <ishapiro@cogitations.com> 1626313297 -0500	commit: Added reverse log option
+7541489ad6df53140809ae3160044edfca6fca71 1e86350e19adfb6eccdfd599c5d80c0fb919bf26 Irv Shapiro <ishapiro@cogitations.com> 1626313971 -0500	commit: Updated readme
+1e86350e19adfb6eccdfd599c5d80c0fb919bf26 f6e787ab6117007c569162b673b76a2081d7f0b3 Irv Shapiro <ishapiro@cogitations.com> 1626373859 -0500	commit: Fixed reverse log bug -- cleared log.
