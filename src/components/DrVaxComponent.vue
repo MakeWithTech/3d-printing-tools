@@ -8,7 +8,7 @@
           contain
           height="200"
         />
-        <p class="font-weight-bold mb-3">Version Beta 1.2</p>
+        <p class="font-weight-bold mb-3">Version Beta 1.3</p>
         <h1 class="display-1 font-weight-bold">
           Let's Learn Something Together
         </h1>

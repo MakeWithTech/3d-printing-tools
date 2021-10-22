@@ -23,7 +23,7 @@
       <v-spacer />
       <v-col class="mb-4" cols="8" justify-center>
         <p>
-          My goal for the DrVax community is to provide content and tools
+          My goal for the MakeWithTech community is to provide content and tools
           supporting your development as a maker. Learn about 3d printing,
           woodworking, basic electronics, computer-aided design, and even a
           little bit of computer programming.
@@ -36,16 +36,11 @@
           wonderful stuff right at home.
         </p>
         <p>
-          My goal for the DrVax community is to provide content and tools
-          supporting your development as a maker. Learn about 3d printing,
-          woodworking, basic electronics, computer-aided design, and even a
-          little bit of computer programming.
-        </p>
-        <p>
           If you are young or old, working or newly retired you can learn
           something new today by just watching videos, reading blog posts and
-          participating in the DrVax discussion forum. This channel includes
-          tutorials for folks with no technical skills up to experts.
+          participating in the MakeWithTech discussion forum. This channel
+          provides tutorials for folks with no technical skills and experts
+          looking for a new point of view.
         </p>
       </v-col>
 
@@ -55,9 +50,11 @@
       <v-spacer />
       <v-col class="mb-4" cols="8" justify-center>
         <p class="subheading font-weight-regular">
-          To collaboration with DrVax community members, and discuss your
+          To collaboration with MakeWithTech community members, and discuss your
           experiences, please join our online
-          <a href="https://forum.drvax.com" target="_blank">Discussion Forum</a>
+          <a href="https://forum.makewithtech.com" target="_blank"
+            >Discussion Forum</a
+          >
         </p>
       </v-col>
       <v-spacer />

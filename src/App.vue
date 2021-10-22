@@ -30,8 +30,10 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <!-- Non breaking spaces added to title to solve a truncation bug -->
-      <v-app-bar-title shrink-on-scroll
-        >DrVax 3d Printing Tools &nbsp;
+      <v-app-bar-title shrink-on-scroll>
+        <v-toolbar-title>
+          <b class="mytitle"> MakeWithTech 3d Printing Tools </b>
+        </v-toolbar-title>
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <span class="hidden-sm-and-down">
@@ -39,10 +41,10 @@
           <router-link to="/">Home</router-link>
         </v-btn>
         <v-btn class="mr-2" text href="https://drvax.com">
-          <a href="https://drvax.com">DrVax Blog</a>
+          <a href="https://drvax.com">MakeWithTech Blog</a>
         </v-btn>
-        <v-btn class="mr-2" text href="https://youtube.com/c/drvax">
-          <a href="https://youtube.com/c/drvax">YouTube Channel</a>
+        <v-btn class="mr-2" text href="https://youtube.com/c/makewithtech">
+          <a href="https://youtube.com/c/makewithtech">YouTube Channel</a>
         </v-btn>
         <v-btn class="mr-2" text to="/about">
           <router-link to="/about">About</router-link>
@@ -74,3 +76,11 @@ export default {
   }),
 };
 </script>
+<style scoped>
+.mytitle {
+  font-size: 1rem;
+}
+.v-app-bar-title__content {
+  width: 500px !important;
+}
+</style>
