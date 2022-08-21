@@ -34,12 +34,11 @@
       <v-spacer />
       <v-col cols="8" justify-center>
         <p>
-          The initial two utilities provided in this application assist with
-          calibrating FDM 3d printers that use Gcocde. A common problem faced by
-          users of 3d printers is finding appropriate software that supports
-          interacting over a USB connections with a 3d printer. The "GCODE USB
-          TERMINAL" provides users of 3d printers with an easy to access
-          solution since it runs from both Google Chrome and Microsoft Edge.
+          A common problem faced by users of 3d printers is finding appropriate
+          software that supports interacting over a USB connections with a 3d
+          printer. The "GCODE USB TERMINAL" provides users of 3d printers with
+          an easy to access solution since it runs from both Google Chrome and
+          Microsoft Edge.
         </p>
         <p>
           These applications are designed for laptops, chromebooks and desktop
@@ -47,6 +46,30 @@
           I have not tested on tablets.
         </p>
       </v-col>
+      <v-spacer />
+    </v-row>
+    <v-row class="text-center">
+      <v-spacer />
+      <v-col cols="8" justify-center>
+        <p class="subheading font-weight-bold">The MakeWithTech Platform</p>
+        <p>
+          The MakeWithTech platform consists of a family of services available
+          to the Maker community to help them design, create, make things right
+          at home. Make sure you visit the
+          <a href="https://forum.makewithtech.com" target="_blank"
+            >MakeWithTech User Forum</a
+          >
+          to discuss your most recent project, get help from thousands of Makers
+          about your 3d printer, software or electronics. <b /><b /> If you are
+          looking for models to 3d print head over to
+          <a href="https://models.makewithtech.com" target="_blank"
+            >Models @ MakeWithTech</a
+          >
+          where you can select a template and produce a custom model for 3d
+          printing.
+        </p></v-col
+      >
+
       <v-spacer />
     </v-row>
     <v-row class="text-center">

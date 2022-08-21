@@ -1,5 +1,8 @@
 {
-  "projectName": "3dprintingutilities",
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "3DPrintingTools",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
@@ -10,8 +13,5 @@
       "BuildCommand": "npm run-script build",
       "StartCommand": "npm run-script serve"
     }
-  },
-  "providers": [
-    "awscloudformation"
-  ]
+  }
 }

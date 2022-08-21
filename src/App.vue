@@ -41,10 +41,22 @@
           <router-link to="/">Home</router-link>
         </v-btn>
         <v-btn class="mr-2" text href="https://drvax.com">
-          <a href="https://drvax.com">MakeWithTech Blog</a>
+          <a href="https://drvax.com" target="_blank">MakeWithTech Blog</a>
         </v-btn>
-        <v-btn class="mr-2" text href="https://youtube.com/c/makewithtech">
-          <a href="https://youtube.com/c/makewithtech">YouTube Channel</a>
+        <v-btn class="mr-2" text href="https://drvax.com" target="_blank">
+          <a href="https://models.makewithtech.com" target="_blank"
+            >Models @ MakeWithTech</a
+          >
+        </v-btn>
+        <v-btn
+          class="mr-2"
+          text
+          href="https://youtube.com/c/makewithtech"
+          target="_blank"
+        >
+          <a href="https://youtube.com/c/makewithtech" target="_blank"
+            >YouTube Channel</a
+          >
         </v-btn>
         <v-btn class="mr-2" text to="/about">
           <router-link to="/about">About</router-link>
